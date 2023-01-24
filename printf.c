@@ -34,10 +34,17 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			f = find_specifier(format[i + 1]);
-			if (f)
+			if (f && format[i + 1] != '%')
 			{
 				value = f(args);
 				count += value;
+				i += 2;
+				continue;
+			}
+			else if (format[i + 1] == '%')
+			{
+				u = '%';
+				write(1, &u, 1);
 				i += 2;
 				continue;
 			}
