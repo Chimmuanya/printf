@@ -27,7 +27,7 @@ int (*find_specifier(const char c)) (va_list args)
 		f = &print_int;
 		return (f);
 	case 'd':
-		f = &print_int;
+		f = &print_dec;
 		return (f);
 	default:
 		return (NULL);

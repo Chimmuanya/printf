@@ -13,14 +13,11 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i = 0;
-	int count = 0;
-	int value;
+	int i = 0, count = 0, value;
 	char u;
 	int (*f)(va_list);
 
 	va_start(args, format);
-
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -30,7 +27,6 @@ int _printf(const char *format, ...)
 			i++;
 			continue;
 		}
-
 		if (format[i] == '%')
 		{
 			f = find_specifier(format[i + 1]);
@@ -46,17 +42,15 @@ int _printf(const char *format, ...)
 				u = '%';
 				write(1, &u, 1);
 				i += 2;
+				count += 1;
 				continue;
 			}
 			u = '%';
-			write(1, &u, 1);
-			u = format[i + 1];
-			write(1, &u, 1);
-			i += 2;
+			write(1, &u, 1), u = format[i + 1];
+			write(1, &u, 1), i += 2;
 			count += 2;
 		}
 	}
-
 	va_end(args);
 	return (count);
 }

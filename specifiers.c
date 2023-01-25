@@ -106,3 +106,33 @@ int print_int(va_list args)
 	}
 	return (count);
 }
+
+
+/**
+* print_dec - function to print long long integers using _putchar
+* @n: integer to be printed.
+*
+* prints integers to stdout
+* Return: int -number of digits printed
+*/
+
+int print_dec(va_list args)
+{
+	long i;
+	int count = 0;
+	char m = '-';
+
+	if (args)
+	{
+		i = va_arg(args, long);
+
+		if (i < 0)
+		{
+			write(1, &m, 1);
+			i = i * -1;
+		}
+		count = count_l(i);
+		help_long(i);
+	}
+	return (count);
+}
