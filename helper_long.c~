@@ -1,0 +1,69 @@
+#include "main.h"
+
+/**
+* help_long - function to print integers using _putchar
+* @n: integer to be printed.
+* prints integers to stdout
+* Return: int -number of digits printed
+*/
+
+void help_long(long n)
+{
+	char c;
+
+	if (n / 10)
+		help_long(n / 10);
+
+	c = (n % 10) + '0';
+	write(1, &c, 1);
+}
+
+
+/**
+* count_l - function to count_digits
+* @n: integer to be counted.
+*
+* Return: int -number of digits
+*/
+
+int count_l(long n)
+{
+	int count = 0;
+
+	while (n)
+	{
+		count++;
+		n /= 10;
+	}
+	return (count);
+}
+
+
+
+/**
+* print_dec - function to print long long integers using _putchar
+* @n: integer to be printed.
+*
+* prints integers to stdout
+* Return: int -number of digits printed
+*/
+
+int print_dec(va_list args)
+{
+	long i;
+	int count = 0;
+	char m = '-';
+
+	if (args)
+	{
+		i = va_arg(args, long);
+		if (i < 0)
+		{
+			write(1, &m, 1);
+			i = i * -1;
+		}
+		count = count_l(i);
+		help_long(i);
+	}
+	return (count);
+}
